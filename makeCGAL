@@ -110,7 +110,7 @@ do
         mpfrPACKAGE="${1%%/}"
         shift
         ;;
-    CGAL-[0-9]*)
+    CGAL-[0-9]* | CGAL-sys* )
         cgalPACKAGE="${1%%/}"
         shift
         ;;
@@ -166,15 +166,15 @@ then
         exit 1
     }
 else
-    boostInc="/usr/include"
+    boostInc=${boostInc:-/usr/include}
 
     # For completeness:
     # 64-bit needs lib64, but 32-bit needs lib (not lib32)
     if [ "$WM_ARCH_OPTION" = 64 ]
     then
-        boostLib="/usr/lib$WM_ARCH_OPTION"
+        boostLib=${boostLib:-/usr/lib$WM_ARCH_OPTION}
     else
-        boostLib="/usr/lib"
+        boostLib=${boostLib:-/usr/lib}
     fi
 fi
 
